@@ -11,10 +11,43 @@
 
   <body>
 
+    <!-- ヘッダー -->
     <header class="container-fluid">
       <p>myLegacy</p>
     </header>
 
-    <%= yield %>
+    <!--メインコンテンツ-->
+    <div class="container-fluid">
+    <!-- サイドバー -->
+    <div class="row">
+      <nav class="col-xs-2 side-bar">
+        <% if user_signed_in? %>
+          <!-- ログインしている場合 -->
+          <%= attachment_image_tag(current_user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %>
+          <%= current_user.name %>
+          <ul>
+            <li><%= link_to 'TOP', posts_path %></li>
+            <li><%= link_to 'マイページ', user_path(current_user) %></li>
+            <li><%= link_to '新しく投稿する', new_post_path %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <!-- 未ログインの場合 -->
+          <ul>
+            <li><%= link_to 'TOP', posts_path %></li>
+            <li><%= link_to 'ABOUT', '/homes/about' %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+          </ul>
+        <% end %>
+      </nav>
+
+      <main class="col-xs-10 main-bar">
+        <%= yield %>
+      </main>
+
+    </div>
+    </div>
+
   </body>
 </html>

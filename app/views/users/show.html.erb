@@ -1,0 +1,5 @@
+<%= attachment_image_tag(@user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %>
+<%= @user.name %>
+<%= @user.introduction %>
+
+<%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
