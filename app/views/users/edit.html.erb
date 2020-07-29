@@ -1,0 +1,25 @@
+<h1>USERS#EDIT</h1>
+
+<%= form_for(@user) do |f| %>
+
+
+<div class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+</div>
+
+<div class="field">
+	<%= f.label :image %>
+	<%= f.attachment_field :image %>
+</div>
+
+<div class="field">
+	<%= f.label :introduction %>
+	<%= f.text_area :introduction %>
+</div>
+
+<div class="actions">
+	<%= f.submit %>
+</div>
+
+<% end %>
