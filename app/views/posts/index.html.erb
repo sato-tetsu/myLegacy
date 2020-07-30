@@ -1,1 +1,4 @@
-<h1>POSTS#INDEX</h1>
+<% @posts.each do |post| %>
+	<%= post.body %>
+	<%= post.opinion %>
+<% end %>
