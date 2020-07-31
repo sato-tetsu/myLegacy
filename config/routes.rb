@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 	root 'posts#index'
 	get "/homes/about" => "homes#about"
 	resources :users
-	resources :posts
-	resources :likes
-	resources :favorites
-	resources :comments
+	resources :posts do
+		resource :likes, only: [:create, :destroy]
+		resources :favorites
+		resources :comments, only: [:create, :destroy]
+	end
+
 	resources :relationships
 	
 end

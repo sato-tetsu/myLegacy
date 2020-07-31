@@ -1,4 +1,8 @@
+<h1>POSTS#INDEX</h1>
+
 <% @posts.each do |post| %>
-	<%= post.body %>
+<div class="col">
+	<%= link_to "#{post.body}", post_path(post.id) %>
 	<%= post.opinion %>
+</div>
 <% end %>
