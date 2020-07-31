@@ -1,0 +1,35 @@
+<h1>POSTS#SHOW</h1>
+
+<%= @post.body %>
+<%= @post.opinion %>
+
+<!-- いいね機能の実装 -->
+<% if @post.liked_by?(current_user) %>
+	<%= link_to post_likes_path(@post), method: :delete do %>
+		<%= @post.likes.count %>いいね
+	<% end %>
+<% else %>
+	<%= link_to post_likes_path(@post), method: :post do %>
+		<%= @post.likes.count %>いいね
+	<% end %>
+<% end %>
+
+<!-- コメント機能の実装 -->
+<%= @post.comments.count %>件のコメント
+
+<ol>
+	<% @post.comments.each do |comment|%>
+	<li>
+		名前#<%= comment.user.name %>#コメント#<%= comment.body %>#
+		<% if comment.user == current_user %>
+			<%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+		<% end %>
+	</li>
+	<% end %>
+</ol>
+
+<%= form_for [@post, @comment] do |f| %>
+	<%= f.text_area :body %>
+	<%= f.submit "送信する" %>
+<% end %>
+
