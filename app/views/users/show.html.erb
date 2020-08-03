@@ -3,3 +3,15 @@
 <%= @user.introduction %>
 
 <%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
+
+<div class="row">
+	<% if @user.id != current_user.id %>
+		<% if current_user.following?(@user) %>
+		     <%= link_to 'フォロー外す', destroy_path(@user.id), method: :POST, class:"col-xs-12 btn btn-default" %>
+		<% else %>
+		     <%= link_to 'フォローする', create_path(@user.id), method: :POST, class:"col-xs-12 btn btn-default" %>
+		<% end %>
+	<% else %>
+	    <%= link_to '',edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{@user.id}" %>
+	<% end %>
+</div>
