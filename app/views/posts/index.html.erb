@@ -1,8 +1,13 @@
-<h1>POSTS#INDEX</h1>
+<h1>最新の投稿　POSTS#INDEX</h1>
 
-<% @posts.each do |post| %>
-<div class="col">
-	<%= link_to "#{post.body}", post_path(post.id) %>
-	<%= post.opinion %>
-</div>
-<% end %>
+	<% @posts.each do |post| %>
+		<div class="row contents" style="margin: 10px 15px;">
+			<div class="col-xs-1">
+				<%= attachment_image_tag(post.user, :image_id, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+			</div>
+			<div class="col-xs-11">
+				<%= link_to "#{post.body}", post_path(post.id) %><br>
+				<%= post.opinion %>
+			</div>
+		</div>
+	<% end %>
