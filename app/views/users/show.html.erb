@@ -1,7 +1,9 @@
-<%= attachment_image_tag(@user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %>
-<%= @user.name %>
-<%= @user.introduction %>
+<h1><%= @user.name %>の投稿　POSTS#SHOW</h1>
 
+
+<%= attachment_image_tag(@user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+<%= @user.name %><br>
+<%= @user.introduction %><br>
 <%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
 
 <div class="row">
@@ -11,7 +13,15 @@
 		<% else %>
 		     <%= link_to 'フォローする', create_path(@user.id), method: :POST, class:"col-xs-12 btn btn-default" %>
 		<% end %>
-	<% else %>
-	    <%= link_to '',edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{@user.id}" %>
 	<% end %>
 </div>
+
+
+<% @posts.each do |post| %>
+	<div class="row contents" style="margin: 10px 15px;">
+		<div class="col">
+			<%= link_to "#{post.body}", post_path(post.id) %><br>
+			<%= post.opinion %>
+		</div>
+	</div>
+<% end %>

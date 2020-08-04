@@ -20,12 +20,14 @@
     <div class="container-fluid">
     <!-- サイドバー -->
     <div class="row">
-      <nav class="col-xs-2 side-bar">
+      <nav class="col-xs-2 side-bar" style="padding: 0;">
         <% if user_signed_in? %>
           <!-- ログインしている場合 -->
-          <%= attachment_image_tag(current_user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %>
-          <%= current_user.name %>
           <ul>
+            <li class="profile">
+              <%= attachment_image_tag(current_user, :image_id, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+              <%= current_user.name %>
+            </li>
             <li><%= link_to 'TOP', posts_path %></li>
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <li><%= link_to '新しく投稿する', new_post_path %></li>

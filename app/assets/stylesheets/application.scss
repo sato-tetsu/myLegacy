@@ -25,20 +25,45 @@ body{
 header{
 	width: 100%;
 	padding: 12px;
-	background-color: #e0e0e0;
+	background-color: #90623c;
 }
 
 header p{
 	margin: 0px;
 	text-align: center;
+	color: #dec5b0;
+	font-weight: 800;
 }
 
 .side-bar{
 	min-height: 100vh;
-	background-color: #c0c0c0;
+	background-color: #fbd6b7;
 }
+
+.side-bar ul, ol{
+	list-style: none;
+	padding: 0;
+}
+
+.side-bar li{
+	padding: 15px;
+	border-bottom: solid 1px #fafafa;
+}
+
 
 .main-bar{
 	height: auto;
-	background-color: #a0a0a0;
+	background-color: #f5f5f5;
+}
+
+.profile{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.contents{
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	border-radius: 20px;
 }
