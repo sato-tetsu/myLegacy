@@ -1,13 +1,40 @@
-<h1>最新の投稿　POSTS#INDEX</h1>
+	<p style="margin: 10px 100px;">最新の投稿　POSTS#INDEX</p>
 
 	<% @posts.each do |post| %>
-		<div class="row contents" style="margin: 10px 15px;">
+		<div class="row contents" style="margin: 10px 100px;">
 			<div class="col-xs-1">
 				<%= attachment_image_tag(post.user, :image_id, :fill, 50, 50, fallback: "no_image.jpg") %><br>
 			</div>
 			<div class="col-xs-11">
-				<%= link_to "#{post.body}", post_path(post.id) %><br>
-				<%= post.opinion %>
+				<div class="row">
+					<%= link_to "#{post.body}", post_path(post.id) %><br>
+					<%= post.opinion %>
+				</div>
+
+				<% if user_signed_in? %>
+					<div class="row">
+						<div id="likes_ajax_<%= post.id %>">
+							<%= render "likes/like", post: post %>
+						</div>
+						<div id="favorites_ajax_<%= post.id %>">
+							<%= render "favorites/favorite", post: post %>
+						</div>
+					</div>
+				<% else %>
+
+					<div class="row">
+						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+ <%= post.likes.count %>
+						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</div>
+
+				<% end %>
+
+
+
+
+
+
 			</div>
 		</div>
 	<% end %>

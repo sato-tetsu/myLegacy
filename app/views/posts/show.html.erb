@@ -4,15 +4,9 @@
 <%= @post.opinion %>
 
 <!-- いいね機能の実装 -->
-<% if @post.liked_by?(current_user) %>
-	<%= link_to post_likes_path(@post), method: :delete do %>
-		<%= @post.likes.count %>いいね
-	<% end %>
-<% else %>
-	<%= link_to post_likes_path(@post), method: :post do %>
-		<%= @post.likes.count %>いいね
-	<% end %>
-<% end %>
+<div id="likes_ajax_<%= @post.id %>">
+	<%= render partial: 'likes/like', locals: { post: @post} %>
+</div>
 
 <!-- コメント機能の実装 -->
 <%= @post.comments.count %>件のコメント

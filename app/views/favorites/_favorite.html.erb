@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_user) %>
+	<%= link_to post_favorites_path(post.id), method: :delete, remote: true do %>
+	<i class="glyphicon glyphicon-star" aria-hidden="true" style="color: orange;"></i>
+	<% end %>
+<% else %>
+	<%= link_to post_favorites_path(post.id), method: :post, remote: true do %>
+	<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+	<% end %>
+<% end %>
