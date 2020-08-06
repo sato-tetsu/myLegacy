@@ -7,14 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    
   </head>
 
   <body>
 
     <!-- ヘッダー -->
-    <header class="container-fluid">
-      <p>myLegacy</p>
-    </header>
 
     <!--メインコンテンツ-->
     <div class="container-fluid">
@@ -24,6 +23,7 @@
         <% if user_signed_in? %>
           <!-- ログインしている場合 -->
           <ul>
+            <li style="font-weight: 900; font-size: 34px">myLegacy</li>
             <li class="profile">
               <%= attachment_image_tag(current_user, :image_id, :fill, 50, 50, fallback: "no_image.jpg") %><br>
               <%= current_user.name %>
@@ -36,6 +36,7 @@
         <% else %>
           <!-- 未ログインの場合 -->
           <ul>
+            <li style="font-weight: 900; font-size: 34px">myLegacy</li>
             <li><%= link_to 'TOP', posts_path %></li>
             <li><%= link_to 'ABOUT', '/homes/about' %></li>
             <li><%= link_to 'ログイン', new_user_session_path %></li>
