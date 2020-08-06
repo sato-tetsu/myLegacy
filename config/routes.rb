@@ -4,13 +4,14 @@ Rails.application.routes.draw do
 
 	root 'posts#index'
 	get "/homes/about" => "homes#about"
+	get "favorites", to: "favorites#index"
+
 	resources :users
 	resources :posts do
 		resource :likes, only: [:create, :destroy]
 		resource :favorites, only: [:create, :destroy]
 		resources :comments, only: [:create, :destroy]
 	end
-
 	resources :relationships, only: [:create, :destroy]
 	
 end

@@ -5,8 +5,13 @@
 	<p>新しく投稿　POSTS#NEW</p>
 	<%= f.text_area :body, size: "100x5", placeholder:"あなたの名言をここに入力しましょう" %><br>
 
-	<p>注釈</p>
-	<%= f.text_field :opinion, size: "100x3" %><br>
+	<p>ジャンル</p>
+	<%= f.select :opinion, [
+		["書籍（小説、漫画）", "書籍（小説、漫画）"], 
+		["映像（映画・ドラマ・アニメ）", "映像（映画・ドラマ・アニメ）"], 
+		["人物（偉人、人物）", "人物（偉人、人物）"], 
+		["その他"]], 
+		include_blank: "選択して下さい" %><br>
 
 	<%= f.submit "投稿する" %>
 <% end %>

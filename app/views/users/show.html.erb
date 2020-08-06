@@ -1,21 +1,13 @@
 <h1><%= @user.name %>の投稿　POSTS#SHOW</h1>
 
 
-<%= attachment_image_tag(@user, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
 <%= @user.name %><br>
 <%= @user.introduction %><br>
-<%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
 
-<div class="row">
-	<% if @user.id != current_user.id %>
-		<% if current_user.following?(@user) %>
-		     <%= link_to 'フォロー外す', destroy_path(@user.id), method: :POST, class:"col-xs-12 btn btn-default" %>
-		<% else %>
-		     <%= link_to 'フォローする', create_path(@user.id), method: :POST, class:"col-xs-12 btn btn-default" %>
-		<% end %>
-	<% end %>
-</div>
-
+<% if @user.id == current_user.id %>
+	<%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
+<% end %>
 
 <% @posts.each do |post| %>
 	<div class="row contents" style="margin: 10px 15px;">
