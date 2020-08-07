@@ -4,6 +4,9 @@ class Post < ApplicationRecord
 	has_many :likes, dependent: :destroy
 	has_many :favorites, dependent: :destroy
 
+	validates :body, presence: true
+	validates :opinion, presence: true
+
 	def liked_by?(user)
 	    likes.where(user_id: user.id).exists?
 	end

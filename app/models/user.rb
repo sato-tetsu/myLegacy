@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+	attachment :image
+
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
@@ -15,6 +17,8 @@ class User < ApplicationRecord
 
 	has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
 	has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
+
+	validates :name, presence: true
 
 	# ユーザーをフォローする
 	def follow(user_id)
@@ -30,7 +34,4 @@ class User < ApplicationRecord
 	def following?(user)
 		following_user.include?(user)
 	end
-
-
-	attachment :image
 end
