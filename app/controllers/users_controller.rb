@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :protect_user, only: [:edit, :update]
 
 	def show
 	    @user = User.find(params[:id])
@@ -24,5 +25,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :introduction, :image)
     end
 
+   def protect_user
+    unless params[:id].to_i == current_user.id
+      redirect_to user_path(current_user)
+    end
+   end
 
 end
