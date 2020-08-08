@@ -1,29 +1,75 @@
-<h1>POSTS#SHOW</h1>
+<div style="margin: 50px 100px;">
+	<h4 class="deco" style="text-align: center; margin-bottom: 30px;">
+		投稿の詳細
+	</h4>
 
-<%= @post.body %>
-<%= @post.opinion %>
+		<div class="row contents" style="margin: 10px 100px;">
+			<div class="col-xs-2">
+				<%= link_to(@post.user) do %>
+				<%= attachment_image_tag(@post.user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+				<% end %>
+			</div>
+			<div class="col-xs-10">
+				<div class="row">
+					<%= @post.body %><br>
+					<%= @post.opinion %>
+				</div>
+				<div class="row">
+				<% if user_signed_in? %>
 
-<!-- いいね機能の実装 -->
-<div id="likes_ajax_<%= @post.id %>">
-	<%= render partial: 'likes/like', locals: { post: @post} %>
-</div>
+					<!-- いいね機能の実装 -->
+					<i id="likes_ajax_<%= @post.id %>">
+						<%= render partial: 'likes/like', locals: { post: @post} %>
+					</i>
 
-<!-- コメント機能の実装 -->
-<%= @post.comments.count %>件のコメント
+					<i id="favorites_ajax_<%= @post.id %>">
+						<%= render partial: 'favorites/favorite', locals: { post: @post} %>
+					</i>
 
-<ol>
-	<% @post.comments.each do |comment|%>
-	<li>
-		名前#<%= comment.user.name %>#コメント#<%= comment.body %>#
-		<% if comment.user == current_user %>
-			<%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+					<i>
+					<% if user_signed_in? %>
+						<% if @post.user == current_user %>
+							<%= link_to "編集する", edit_post_path(@post) %>
+							<%= link_to "削除する", @post, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
+						<% end %>
+					<% end %>
+					</i>
+
+				<% else %>
+					<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+					<%= @post.likes.count %>
+					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+				<% end %>
+				</div>
+
+
+			</div>
+		</div>
+
+	<h4 class="deco" style="text-align: center; margin-bottom: 30px; margin-top: 100px;">
+		コメント <%= @post.comments.count %>件
+	</h4>
+
+
+	<div style="margin: 10px 100px;">
+		<!-- コメント機能の実装 -->
+		<% if user_signed_in? %>
+			<%= form_for [@post, @comment] do |f| %>
+				<%= f.text_area :body %><br>
+				<%= f.submit "送信する" %>
+			<% end %>
 		<% end %>
-	</li>
-	<% end %>
-</ol>
 
-<%= form_for [@post, @comment] do |f| %>
-	<%= f.text_area :body %>
-	<%= f.submit "送信する" %>
-<% end %>
-
+		<ol>
+			<% @post.comments.each do |comment|%>
+			<li>
+				名前#<%= comment.user.name %>#コメント#<%= comment.body %>#
+				<% if comment.user == current_user %>
+					<%= link_to "編集",  edit_post_comment_path(comment) %>
+					<%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+				<% end %>
+			</li>
+			<% end %>
+		</ol>
+	</div>
+</div>
