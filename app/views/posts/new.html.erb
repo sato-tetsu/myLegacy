@@ -1,8 +1,12 @@
+<div style="margin: 50px 100px;">
+	<h4 class="deco" style="text-align: center; margin-bottom: 30px;">
+		新しく投稿する
+	</h4>
+
 <div class="center">
 
 <%= form_with model: @post do |f| %>
 
-	<p>新しく投稿　POSTS#NEW</p>
 	<%= f.text_area :body, size: "100x5", placeholder:"あなたの名言をここに入力しましょう" %><br>
 
 	<p>ジャンル</p>
@@ -16,4 +20,5 @@
 	<%= f.submit "投稿する" %>
 <% end %>
 
+</div>
 </div>

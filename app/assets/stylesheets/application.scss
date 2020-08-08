@@ -20,7 +20,32 @@ body{
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
+	font-family: Roboto, YuGothic, "游ゴシック体"
 }
+
+.deco {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.deco::before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 75%;
+    height: 1px;
+    margin: 0 auto;
+    text-align: center;
+    background-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 
 .box{
 	display: flex;
@@ -43,7 +68,7 @@ header p{
 
 .side-bar{
 	min-height: 100vh;
-	background-color: #fbd6b7;
+	background-color: #192f60;
 }
 
 .side-bar ul, ol{
@@ -56,11 +81,15 @@ header p{
 	border-bottom: solid 1px #fafafa;
 }
 
+.side-bar a{
+	text-decoration: none;
+	color: #fff;
+}
 
 .main-bar{
 	position: relative;
 	min-height: 100vh;
-	background-color: #f5f5f5;
+	background-color: #f1f1f1;
 }
 
 .profile{
@@ -80,4 +109,8 @@ header p{
 	top: 15%;
 	left: 50%;
 	transform: translateY(0%) translateX(-50%);
+}
+
+.field{
+	margin-bottom: 20px;
 }
