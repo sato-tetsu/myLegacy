@@ -1,34 +1,36 @@
-<div class="center" style="background-color: #fff; border-radius: 10px; width: 500px; padding: 20px;">
+<div class="center box">
+<h5 style="text-align: center;">新規登録</h5>
 
-  <p>新規登録</p>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+      <h5>ニックネーム</h5>
+        <%= f.text_field :name,
+        autocomplete: "name",
+        autofocus: true,
+        size: "63" %>
 
-    <div class="field">
-      <%= f.text_field :name, placeholder:"ニックネーム", autocomplete: "name", autofocus: true, size: "63" %>
-    </div>
+      <h5>メールアドレス</h5>
+        <%= f.email_field :email,
+        autocomplete: "email",
+        size: "63" %>
 
-    <div class="field">
-      <%= f.email_field :email, placeholder:"メールアドレス", autocomplete: "email", size: "63" %>
-    </div>
+      <h5>パスワード</h5>
+        <%= f.password_field :password,
+        placeholder:"#{@minimum_password_length}characters minimum",
+        autocomplete: "new-password",
+        size: "63" %>
 
-    <div class="field">
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, placeholder:"パスワード", autocomplete: "new-password", size: "63" %>
-    </div>
+      <h5>確認用パスワード</h5>
+        <%= f.password_field :password_confirmation,
+        placeholder:"確認用パスワード",
+        autocomplete: "new-password",
+        size: "63" %><br>
 
-    <div class="field">
-      <%= f.password_field :password_confirmation, placeholder:"確認用パスワード", autocomplete: "new-password", size: "63" %>
-    </div>
+      <br>
+      <%= f.submit "新規登録" %>
 
-    <div class="actions">
-      <%= f.submit "新しく登録する" %>
-    </div>
-
-  <% end %>
+    <% end %>
 
   <%= render "devise/shared/links" %>
 

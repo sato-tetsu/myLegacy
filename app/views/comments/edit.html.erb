@@ -1,1 +1,14 @@
-<h1>COMMENT#EDIT</h1>
+<div class="center box">
+
+	<%= form_for(@post) do |f| %>
+
+		<h5>編集したいコメント</h5>
+		<%= f.text_area :body,
+			size: "60x5"%>
+			<br>
+
+		<br>
+		<%= f.submit "更新する" %>
+
+	<% end %>
+</div>

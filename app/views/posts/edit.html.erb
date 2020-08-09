@@ -1,29 +1,23 @@
-<div style="margin: 50px 100px;">
-	<h4 class="deco" style="text-align: center; margin-bottom: 30px;">
-		投稿を編集
-	</h4>
+<div class="center box">
 
-	<div style="width: 50%; margin: 0 auto;">
-		<%= form_for(@post) do |f| %>
+	<%= form_for(@post) do |f| %>
 
-			<div class="field">
-				<%= f.label :本文 %><br>
-				<%= f.text_area :body %>
-			</div>
+		<h5>編集したい言葉</h5>
+		<%= f.text_area :body,
+			size: "60x5",
+			placeholder:"印象に残った、感動した言葉をここに入力しましょう" %>
+			<br>
 
-			<div class="field">
-				<%= f.label :ジャンル %><br>
-				<%= f.select :opinion, [
-					["書籍（小説、漫画）", "書籍（小説、漫画）"], 
-					["映像（映画・ドラマ・アニメ）", "映像（映画・ドラマ・アニメ）"], 
-					["人物（偉人、人物）", "人物（偉人、人物）"], 
-					["その他"]] %><br>
-			</div>
+		<h5>分類</h5>
+		<%= f.select :opinion, [
+			["書籍（小説、漫画）", "書籍（小説、漫画）"],
+			["映像（映画・ドラマ・アニメ）", "映像（映画・ドラマ・アニメ）"],
+			["人物（偉人、知人）", "人物（偉人、知人）"],
+			["その他"]] %>
+			<br>
 
-			<div class="actions">
-				<%= f.submit "更新する" %>
-			</div>
+		<br>
+		<%= f.submit "更新する" %>
 
-		<% end %>
-	</div>
+	<% end %>
 </div>
