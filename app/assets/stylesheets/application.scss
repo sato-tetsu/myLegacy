@@ -13,8 +13,10 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";  /*ここを追加*/
-@import "bootstrap";            /*ここを追加*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* ======================== 全体に影響する処理 ======================== */
 
 body{
 	margin: 0;
@@ -23,10 +25,78 @@ body{
 	font-family: Roboto, YuGothic, "游ゴシック体"
 }
 
+/* ============ サイドバー ============ */
+
+.side-bar{
+	min-height: 100vh;
+	background-color: #192f60;
+	padding: 0;
+}
+
+.side-bar ul, ol{
+	list-style: none;
+	padding: 0;
+}
+
+.side-bar li{
+	padding: 15px;
+	border-bottom: solid 1px #fafafa;
+}
+
+.side-bar a{
+	text-decoration: none;
+	color: #fff;
+}
+
+/* 画面左上のロゴにのみ使用 */
+.logo{
+	font-family: Optima;
+	font-weight: 900;
+	font-size: 34px;
+	color:#fff;
+}
+
+/* 画面左上のアイコンにのみ使用 */
+.profile{
+	margin: 0 auto;
+	text-align: center;
+}
+
+/* ============ メインバー ============ */
+
+.main-bar{
+	position: relative;
+	min-height: 100vh;
+	background-color: #f1f1f1;
+}
+
+/* コンテンツの白枠部分 */
+.contents{
+	padding: 10px;
+	margin: 10px 100px;
+	background-color: #ffffff;
+	border-radius: 20px;
+}
+
+/* new・edit画面の余白 */
+.center{
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateY(0%) translateX(-50%);
+}
+
+.box{
+	background-color: #fff;
+	border-radius: 10px;
+	width: 500px;
+	padding: 20px;
+}
+
 .deco {
     position: relative;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
     padding-bottom: 15px;
     text-align: center;
 }
@@ -46,71 +116,3 @@ body{
     background-repeat: no-repeat;
 }
 
-
-.box{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-header{
-	width: 100%;
-	padding: 12px;
-	background-color: #90623c;
-}
-
-header p{
-	margin: 0px;
-	text-align: center;
-	color: #dec5b0;
-	font-weight: 800;
-}
-
-.side-bar{
-	min-height: 100vh;
-	background-color: #192f60;
-}
-
-.side-bar ul, ol{
-	list-style: none;
-	padding: 0;
-}
-
-.side-bar li{
-	padding: 15px;
-	border-bottom: solid 1px #fafafa;
-}
-
-.side-bar a{
-	text-decoration: none;
-	color: #fff;
-}
-
-.main-bar{
-	position: relative;
-	min-height: 100vh;
-	background-color: #f1f1f1;
-}
-
-.profile{
-	margin: 0 auto;
-	text-align: center;
-}
-
-.contents{
-	padding: 10px;
-	margin-bottom: 10px;
-	background-color: #ffffff;
-	border-radius: 20px;
-}
-
-.center{
-	position: absolute;
-	top: 15%;
-	left: 50%;
-	transform: translateY(0%) translateX(-50%);
-}
-
-.field{
-	margin-bottom: 20px;
-}

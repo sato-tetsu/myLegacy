@@ -8,24 +8,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    
   </head>
 
   <body>
-
-
-    <!--メインコンテンツ-->
     <div class="container-fluid">
-    <!-- サイドバー -->
     <div class="row">
-      <nav class="col-md-2 side-bar" style="padding: 0;">
 
-
-
+<!--=================== side-bar ===================-->
+      <nav class="col-xs-2 side-bar">
         <% if user_signed_in? %>
           <!-- ログインしている場合 -->
           <ul>
-            <li style="font-family: Optima; font-weight: 900; font-size: 34px; color:#fff;border-bottom: solid 0px #fafafa;">
+            <li class="logo" style="border-bottom: solid 0px #fafafa;">
               <%= link_to "myLegacy", root_path %>
             </li>
             <%= link_to user_path(current_user) do%>
@@ -33,7 +27,7 @@
               <%= attachment_image_tag(current_user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
               <p style="margin: 5px 0 10px 0;"><%= current_user.name %></p>
             </li>
-            <% end %>
+        <% end %>
             <li><%= link_to '最新の投稿', posts_path %></li>
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <li><%= link_to '新しく投稿する', new_post_path %></li>
@@ -44,23 +38,24 @@
         <% else %>
           <!-- 未ログインの場合 -->
           <ul>
-            <li style="font-family: Optima; font-weight: 900; font-size: 34px; color:#fff ">
-              <%= link_to "myLegacy", root_path %>
-            </li>
+            <li class="logo"><%= link_to "myLegacy", root_path %></li>
             <li><%= link_to '最新の投稿', posts_path %></li>
             <li><%= link_to 'ABOUT', '/homes/about' %></li>
             <li><%= link_to 'ログイン', new_user_session_path %></li>
             <li><%= link_to '新規登録', new_user_registration_path %></li>
           </ul>
         <% end %>
-
       </nav>
 
-      <main class="col-md-10 main-bar">
-        <%= yield %>
-      </main>
-    </div>
-    </div>
 
+<!--=================== main-bar ===================-->
+      <main class="col-xs-10 main-bar">
+        <div style="margin: 50px 100px;">
+          <%= yield %>
+        </div>
+      </main>
+<!--=================== main-bar ===================-->
+    </div>
+    </div>
   </body>
 </html>
