@@ -4,12 +4,21 @@
 <div style="text-align: center;">
 	<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
 	<%= @user.name %><br>
+
+	<%= link_to("/users/#{@user.id}/follow") do %>
+		フォロー：<%= @user.following_user.count %>
+	<% end %>
+
+	<%= link_to("/users/#{@user.id}/follower") do %>
+		フォロワー：<%= @user.follower_user.count %><br>
+	<% end %>
+
 	<%= @user.introduction %><br>
 
 	<% if user_signed_in? %>
 		<% if @user.id == current_user.id %>
 			<%= link_to "編集する", edit_user_path(@user), class: "btn btn-default" %>
-		<% else %>
+		<% elsif @user.id != current_user.id %>
 			<% if current_user.following?(@user) %>
 			     <%= link_to 'フォロー外す',
 					destroy_path(@user.id),

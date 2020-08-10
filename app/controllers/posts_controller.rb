@@ -20,8 +20,8 @@ class PostsController < ApplicationController
 
 		if @post.save
 			redirect_to posts_path
-
 		else
+			flash[:alert1] = @post.errors.full_messages
 			render :new
 		end
 	end
@@ -36,6 +36,7 @@ class PostsController < ApplicationController
 		if @post.update(post_params)
 			redirect_to post_path(@post)
 		else
+			flash[:error] = @post.errors.full_messages
 			render "edit"
 		end
 	end

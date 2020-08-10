@@ -1,0 +1,25 @@
+<h4 class="deco">フォロー 一覧</h4>
+
+<% @users.each do |user| %>
+<%= link_to(user) do %>
+
+	<div class="row contents">
+		<!--==== アイコンエリア ====-->
+		<div class="col-xs-2">
+			<%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+			</div>
+
+		<!--==== テキストエリア ====-->
+		<div class="col-xs-10">
+
+			<div class="row">
+				<p><%= user.name %></p>
+				<p><%= user.introduction %></p>
+				</div>
+
+		</div>
+
+	</div>
+
+<% end %>
+<% end %>
