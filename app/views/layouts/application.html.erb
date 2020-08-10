@@ -18,32 +18,56 @@
       <nav class="col-xs-2 side-bar">
         <% if user_signed_in? %>
           <!-- ログインしている場合 -->
-          <ul>
-            <li class="logo" style="border-bottom: solid 0px #fafafa;">
-              <%= link_to "myLegacy", root_path %>
-            </li>
+            <li class="logo"><%= link_to "myLegacy", root_path %></li>
+
             <%= link_to user_path(current_user) do%>
-            <li class="profile" style="color: #fff; padding: 0;">
+            <div class="button_base rollover" style="background-color: #19448e;">
               <%= attachment_image_tag(current_user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
-              <p style="margin: 5px 0 10px 0;"><%= current_user.name %></p>
-            </li>
+              <p style="margin: 10px 0 0 0;"><%= current_user.name %></p>
+            </div>
+
         <% end %>
-            <li><%= link_to '最新の投稿', posts_path %></li>
-            <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><%= link_to '新しく投稿する', new_post_path %></li>
-            <li><%= link_to 'お気に入りの投稿', favorites_path %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-          </ul>
+
+            <%= link_to posts_path do %>
+                <div class="button_base rollover">最新の投稿</div>
+                <% end %>
+
+            <%= link_to user_path(current_user) do %>
+                <div class="button_base rollover">マイページ</div>
+                <% end %>
+
+            <%= link_to new_post_path do %>
+                <div class="button_base rollover">新しく投稿する</div>
+                <% end %>
+
+            <%= link_to favorites_path do %>
+                <div class="button_base rollover">お気に入りの投稿</div>
+                <% end %>
+
+            <%= link_to destroy_user_session_path, method: :delete do %>
+                <div class="button_base rollover">ログアウト</div>
+                <% end %>
 
         <% else %>
           <!-- 未ログインの場合 -->
-          <ul>
             <li class="logo"><%= link_to "myLegacy", root_path %></li>
-            <li><%= link_to '最新の投稿', posts_path %></li>
-            <li><%= link_to 'ABOUT', '/homes/about' %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-          </ul>
+
+            <%= link_to posts_path do %>
+                <div class="button_base rollover">最新の投稿</div>
+                <% end %>
+
+            <%= link_to '/homes/about' do %>
+                <div class="button_base rollover">ABOUT</div>
+                <% end %>
+
+            <%= link_to new_user_session_path do %>
+                <div class="button_base rollover">ログイン</div>
+                <% end %>
+
+            <%= link_to new_user_registration_path do %>
+                <div class="button_base rollover">新規登録</div>
+                <% end %>
+
         <% end %>
       </nav>
 

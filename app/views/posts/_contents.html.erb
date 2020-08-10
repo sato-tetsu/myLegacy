@@ -22,7 +22,7 @@
 			<% if user_signed_in? %>
 				<div class="row">
 					<!-- いいね Ajax -->
-					<i id="likes_ajax_<%= post.id %>">
+					<i id="likes_ajax_<%= post.id %>" >
 						<%= render "likes/like", post: post %>
 						</i>
 					<!-- お気に入り Ajax -->
@@ -31,19 +31,27 @@
 						</i>
 					<!-- コメント -->
 					<%= link_to post_path(post.id) do %>
-						<i class="glyphicon glyphicon-comment" aria-hidden="true"></i>
-						<%= post.comments.count %>
+						<i class="glyphicon glyphicon-comment" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.comments.count %></span>
 					<% end %>
 					</div>
 
 			<!--====  ログインしていない。アイコンを表示するだけ  ====-->
 			<% else %>
 				<div class="row">
-					<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
-					<%= post.likes.count %>
-					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
-					<i class="glyphicon glyphicon-comment" aria-hidden="true"></i>
-					<%= post.comments.count %>
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-heart" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.likes.count %></span>
+						<% end %>
+
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-star" style="color: #999999;" aria-hidden="true"></i>
+						<% end %>
+
+					<%= link_to post_path(post.id) do %>
+						<i class="glyphicon glyphicon-comment" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.comments.count %></span>
+						<% end %>
 					</div>
 			<% end %>
 		</div>

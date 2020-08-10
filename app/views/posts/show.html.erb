@@ -31,18 +31,31 @@
 						</i>
 					<!-- 編集する・削除する -->
 					<% if @post.user == current_user %>
-						<i><%= link_to "編集する", edit_post_path(@post) %>
-							<%= link_to "削除する",@post,method: :delete,data: {confirm: "本当に削除してもよろしいですか？"} %>
-							</i>
+						<i>
+							<%= link_to edit_post_path(@post) do %>
+								<i class="glyphicon glyphicon-pencil" style="color: green;" aria-hidden="true"></i>
+								<% end%>
+
+							<%= link_to @post,method: :delete,data: {confirm: "本当に削除してもよろしいですか？"} do %>
+								<i class="glyphicon glyphicon-trash" style="color: red;" aria-hidden="true"></i>
+								<% end %>
+						</i>
 					<% end %>
 					</div>
 
 			<!--====  ログインしていない。アイコンを表示するだけ  ====-->
 			<% else %>
 				<div class="row">
-					<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
-					<%= @post.likes.count %>
-					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-heart" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= @post.likes.count %></span>
+						<% end %>
+
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-star" style="color: #999999;" aria-hidden="true"></i>
+						<% end %>
+
 					</div>
 			<% end %>
 		</div>
@@ -53,16 +66,16 @@
 <h4 class="deco" style="margin-top: 100px;">コメント <%= @post.comments.count %>件</h4>
 
 <% @post.comments.each do |comment|%>
-	<ol>
 	<div class="row contents">
-		<li>
+		<li style="list-style: none; padding: 0;">
 			<%= comment.user.name %>：<%= comment.body %>
 			<% if comment.user == current_user %>
-				<%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+				<%= link_to post_comment_path(comment.post, comment), method: :delete do%>
+				<i class="glyphicon glyphicon-trash" style="color: red;" aria-hidden="true"></i>
+				<% end %>
 			<% end %>
 			</li>
 	</div>
-	</ol>
 <% end %>
 
 <div style="text-align: center; margin-top: 20px;">
