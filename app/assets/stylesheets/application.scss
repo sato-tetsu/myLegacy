@@ -103,10 +103,33 @@ body{
 
 /* コンテンツの白枠部分 */
 .contents{
+	display: flex;
 	padding: 10px;
 	margin: 10px 100px;
 	background-color: #ffffff;
 	border-radius: 20px;
+}
+
+/* ユーザアイコンのスペース */
+.area-icon{
+	width: 80px;
+	margin: auto 20px auto 10px;
+}
+
+/* テキスト等のスペース */
+.area-text{
+	flex: 1;
+	min-width: 200px;
+}
+
+.area-text-main{
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.area-text-sub{
+	font-size: 12px;
+	line-height: 12px;
 }
 
 /* new・edit画面の余白 */
