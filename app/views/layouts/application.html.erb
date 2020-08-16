@@ -4,19 +4,16 @@
     <title>MyLegacy</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="container-fluid">
-    <div class="row">
-
 <!--=================== side-bar ===================-->
-      <nav class="col-xs-2 side-bar">
+      <nav class="side-bar">
+        <!-- ログインしている場合 -->
         <% if user_signed_in? %>
-          <!-- ログインしている場合 -->
             <li class="logo"><%= link_to "myLegacy", root_path %></li>
 
             <%= link_to user_path(current_user) do%>
@@ -24,7 +21,6 @@
               <%= attachment_image_tag(current_user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
               <p style="margin: 10px 0 0 0;"><%= current_user.name %></p>
             </div>
-
         <% end %>
 
             <%= link_to posts_path do %>
@@ -47,8 +43,8 @@
                 <div class="button_base rollover">ログアウト</div>
                 <% end %>
 
-        <% else %>
           <!-- 未ログインの場合 -->
+        <% else %>
             <li class="logo"><%= link_to "myLegacy", root_path %></li>
 
             <%= link_to posts_path do %>
@@ -66,19 +62,15 @@
             <%= link_to new_user_registration_path do %>
                 <div class="button_base rollover">新規登録</div>
                 <% end %>
-
         <% end %>
       </nav>
+<!--=================== side-bar ===================-->
 
 
 <!--=================== main-bar ===================-->
-      <main class="col-xs-10 main-bar">
-        <div style="margin: 50px 100px;">
+      <main class="main-bar">
           <%= yield %>
-        </div>
       </main>
 <!--=================== main-bar ===================-->
-    </div>
-    </div>
   </body>
 </html>

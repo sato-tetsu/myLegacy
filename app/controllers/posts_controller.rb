@@ -2,7 +2,8 @@ class PostsController < ApplicationController
 
 
 	def index
-		@posts = Post.page(params[:page]).per(5)
+		@posts = Post.order(created_at: :desc).page(params[:page]).per(5)
+		# 投稿を作成日順に並び替えるため desc を指定
 	end
 
 	def show

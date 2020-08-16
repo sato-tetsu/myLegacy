@@ -19,6 +19,7 @@
 /* ======================== 全体に影響する処理 ======================== */
 
 body{
+	display: flex;
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
@@ -28,6 +29,7 @@ body{
 /* ============ サイドバー ============ */
 
 .side-bar{
+	width: 215px;
 	min-height: 100vh;
 	background-color: #192f60;
 	padding: 0;
@@ -80,7 +82,7 @@ body{
 
 .rollover {
     color: #ffffff;
-    padding: 10px;
+    padding: 10px 0;
     background-color: #192f60;
 }
 
@@ -93,6 +95,8 @@ body{
 
 .main-bar{
 	position: relative;
+	flex: 1;
+	padding: 50px 100px;
 	min-height: 100vh;
 	background-color: #f1f1f1;
 }
