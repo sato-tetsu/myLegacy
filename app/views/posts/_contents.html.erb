@@ -3,18 +3,18 @@
 <div class="row contents">
 
 		<!--==== アイコンエリア ====-->
-		<div class="col-xs-2">
+		<div class="area-icon">
 			<%= link_to(post.user) do %>
 			<%= attachment_image_tag(post.user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
 			<% end %>
 			</div>
 
 		<!--==== テキストエリア ====-->
-		<div class="col-xs-10">
+		<div class="area-text">
 
 			<div class="row">
-				<p><%= link_to "#{post.body}", post_path(post.id) %></p>
-				<p><%= post.opinion %></p>
+				<p class="area-text-main"><%= link_to "#{post.body}", post_path(post.id) %></p>
+				<p class="area-text-sub"><%= post.opinion %></p>
 				</div>
 
 		<!--====  いいね・お気に入り・コメントエリア。ユーザのログイン状態によって処理を変更する ====-->
