@@ -95,6 +95,7 @@ body{
 
 .main-bar{
 	position: relative;
+	margin: 0 auto;
 	flex: 1;
 	padding: 50px 100px;
 	min-height: 100vh;
@@ -170,3 +171,13 @@ body{
     background-repeat: no-repeat;
 }
 
+/* ============ レスポンシブ対応 ============ */
+
+@media screen and (max-width:375px) {
+  .side-bar {
+	background-color: #000000;
+  }
+
+  .main-bar{
+  }
+}
