@@ -12,15 +12,15 @@
 		<!--==== テキストエリア ====-->
 		<div class="area-text">
 
-			<div class="row">
+			<div class="row" style="padding-right: 30px;">
 				<p class="area-text-main"><%= @post.body %></p>
-				<p class="area-text-sub"><%= @post.opinion %></p>
+				<p class="area-text-sub"><%= @post.opinion %>：<%= @post&.score %></p>
 				</div>
 
 		<!--====  いいね・お気に入り・コメントエリア。ユーザのログイン状態によって処理を変更する ====-->
 			<!--====  ログイン済み  ====-->
 			<% if user_signed_in? %>
-				<div class="row">
+				<div class="row" style="padding-right: 30px;">
 					<!-- いいね Ajax -->
 					<i id="likes_ajax_<%= @post.id %>">
 						<%= render 'likes/like', post: @post %>
