@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 	root 'posts#index'
 	get "/homes/about" => "homes#about"
 	get "favorites", to: "favorites#index"
+	get "ranking", to: "posts#ranking"
+	get "about_ranking", to: "homes#ranking"
 
 	resources :users
 	resources :posts do
