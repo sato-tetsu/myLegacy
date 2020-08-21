@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
 		post = Post.find(params[:post_id])
 		comment = current_user.comments.new(comment_params)
 	    comment.post_id = post.id
-	    comment.score = Language.get_data(comment_params[:body])
 	    comment.save
 		redirect_to post_path(post)
 	end

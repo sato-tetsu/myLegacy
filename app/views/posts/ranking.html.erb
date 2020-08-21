@@ -1,0 +1,70 @@
+<h4 class="deco">AIスコアランキング</h4>
+
+<!--====== posts/contents より内容をコピペ ======-->
+<% @posts.each do |post| %>
+<div class="row contents">
+
+		<!--==== アイコンエリア ====-->
+		<div class="area-icon">
+			<%= link_to(post.user) do %>
+			<%= attachment_image_tag(post.user, :image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+			<% end %>
+			</div>
+
+		<!--==== テキストエリア ====-->
+		<div class="area-text">
+
+			<div class="row">
+				<p class="area-text-main"><%= link_to "#{post.body}", post_path(post.id) %></p>
+				<p class="area-text-sub"><%= post.opinion %></p>
+				<p class="area-text-sub">AIスコア：<%= post.score %></p>
+				</div>
+
+		<!--====  いいね・お気に入り・コメントエリア。ユーザのログイン状態によって処理を変更する ====-->
+			<!--====  ログイン済み  ====-->
+			<% if user_signed_in? %>
+				<div class="row">
+					<!-- いいね Ajax -->
+					<i id="likes_ajax_<%= post.id %>" >
+						<%= render "likes/like", post: post %>
+						</i>
+					<!-- お気に入り Ajax -->
+					<i id="favorites_ajax_<%= post.id %>">
+						<%= render "favorites/favorite", post: post %>
+						</i>
+					<!-- コメント -->
+					<%= link_to post_path(post.id) do %>
+						<i class="glyphicon glyphicon-comment" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.comments.count %></span>
+					<% end %>
+					</div>
+
+			<!--====  ログインしていない。アイコンを表示するだけ  ====-->
+			<% else %>
+				<div class="row">
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-heart" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.likes.count %></span>
+						<% end %>
+
+					<%= link_to new_user_session_path do %>
+						<i class="glyphicon glyphicon-star" style="color: #999999;" aria-hidden="true"></i>
+						<% end %>
+
+					<%= link_to post_path(post.id) do %>
+						<i class="glyphicon glyphicon-comment" style="color: #999999;" aria-hidden="true"></i>
+						<span style="color: #999999;"><%= post.comments.count %></span>
+						<% end %>
+					</div>
+			<% end %>
+		</div>
+
+</div>
+<% end %>
+
+<%= link_to about_ranking_path do %>
+	<p style="text-align: center">AIスコアランキングとは？</p>
+<% end %>
+
+<!--====== ページネーション用 ======-->
+<div style="text-align: center;"><%= paginate @posts %></div>

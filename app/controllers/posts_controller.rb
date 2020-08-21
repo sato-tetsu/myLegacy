@@ -18,6 +18,7 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.user_id = current_user.id
+	    @post.score = Language.get_data(post_params[:body])
 
 		if @post.save
 			redirect_to posts_path
@@ -46,6 +47,10 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 		redirect_to posts_path
+	end
+
+	def ranking
+		@posts = Post.order(score: :desc).page(params[:page]).per(5)
 	end
 
   private

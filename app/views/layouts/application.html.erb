@@ -40,6 +40,10 @@
                 <div class="button_base rollover">お気に入りの投稿</div>
                 <% end %>
 
+            <%= link_to ranking_path do %>
+                <div class="button_base rollover">AIスコアランキング</div>
+                <% end %>
+
             <%= link_to destroy_user_session_path, method: :delete do %>
                 <div class="button_base rollover">ログアウト</div>
                 <% end %>
